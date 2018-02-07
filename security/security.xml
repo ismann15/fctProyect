@@ -6,8 +6,12 @@ and open the template in the editor.
 -->
 <fctProyect>
     <data>
-        <record id="group_tmutor" model="res.groups">
+        <record id="group_tutor" model="res.groups">
             <field name="name">fctProyect / Tutor</field>
+        </record>
+        
+        <record id="group_pupil" model="res.groups">
+            <field name="name">fctProyect / Pupil</field>
         </record>
     </data>
 </fctProyect>
