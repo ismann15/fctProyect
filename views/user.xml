@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+    <data>
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="user_pupil_tutor_form_view">
+            <field name="name">user.pupil_tutor</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Practices">
+                        <group>
+                            <field name="isPupil" attrs="{'invisible': [('isTutor','=' ,True)]}"/>
+                            <field name="isTutor" attrs="{'invisible': [('isPupil', '=' ,True)]}"/>
+                            <field name="tutor" attrs="{'invisible': [('isPupil', '=', False)]}"/>
+                            <field name="pupils" attrs="{'invisible': [('isTutor', '=', False)]}"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record> 
+    </data>
+</odoo>
