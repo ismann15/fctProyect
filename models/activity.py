@@ -21,6 +21,11 @@ class Activity (models.Model):
                 raise exceptions.ValidationError("Duration cant be more than 8 hours")
     
     
+           
+            
+            
+    
+    
             
     
                 

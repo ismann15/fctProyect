@@ -45,6 +45,36 @@ and open the template in the editor.
                 <p class="oe_view_nocontent_create">Create the first activity</p>
             </field>
         </record>
+        <record model="ir.actions.act_window" id="pupils_list_action">
+            <field name="name">Activities</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('isPupil','=','True')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first pupil</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="pupils_list_action">
+            <field name="name">Pupisla</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('isPupil','=','True')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first pupil</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="partners_view">
+            <field name="name">Partners</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('isFCTPartner','=','True')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first partner</p>
+            </field>
+        </record>
         <!-- top level menu: no parent -->
         <menuitem id="main_fct_proyect" name="FCT Proyect"/>
         <!-- FCT_menu -->
@@ -52,5 +82,9 @@ and open the template in the editor.
         <!-- Activitie menu-->
         <menuitem id="activities_menu" name="Activities" parent="fct_menu"
                     action="activities_list_action"/>
+        <menuitem id="pupils_menu" name="Pupils" parent="fct_menu"
+                    action="pupils_list_action"/>
+        <menuitem id="partner_menu" name ="Partner" parent="fct_menu"
+                    action="partners_view"/>
     </data>
 </odoo>
