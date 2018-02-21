@@ -5,7 +5,7 @@
     'summary': """Manage pupils during the FCT""",
 
     'description': """
-        Long description of module's purpose
+        Module for management of fct pupils 
     """,
 
     'author': "Ismael",
@@ -22,9 +22,11 @@
 
     # always loaded
     'data': [
-        #'security/ir.model.access.csv',
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/parthner.xml'
         'views/user.xml',
-        'views/FCTProyect.xml',
+        'views/fctproyect.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

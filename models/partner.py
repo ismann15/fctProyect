@@ -7,6 +7,7 @@ class Partner(models.Model):
     _inherit = 'res.partner'
     
     isFCTPartner = fields.Boolean(string="FCTPartner", default=False)
-    #fctpPupils= fields.One2many('res.users',ondelete='cascade',string="Pupils")
+    
+    fctpPupils= fields.One2many('res.users',string="Pupils")
     
  

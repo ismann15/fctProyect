@@ -14,30 +14,9 @@ class User (models.Model):
     
     activities = fields.One2many('fctproyect.activity', 'owner', string="Activities")
     
-    
-    #partner = fields.Many2one('res.partner', ondelete='cascade', string="FCTPartner")
+    partner = fields.Many2one('res.partner', ondelete='cascade', string="FCTPartner")
     
     @api.constrains('isPupil', 'isTutor')
     def _chech_not_pupil_and_tutor(self):
         if self.isPupil and self.isTutor:
-            raise exceptions.ValidationError("User can be pupil and tutor at the same time")
-    
-
-
-#@api.onchange('isPupil', 'isTutor')
-#def _chech_not_pupil_and_tutor(self):
-#    if self.isPupil and self.isTutor == True:
-#        return {
-#                'warning': {
-#                    'title': "Incorrect 'seats' value",
-#                   'message': "The number of available seats may not be negative",
-#                },
-#               
-#                
-#        }
-#        self.isPupil = False
-#        self.isTutor = False  
-# ondelete='set null', string="FCTPartner",index=True,domain=[('isPupil', '=', True)]
-            
-            
-        
+            raise exceptions.ValidationError("User can be pupil and tutor at the same time")        

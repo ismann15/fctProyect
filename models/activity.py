@@ -12,14 +12,29 @@ class Activity (models.Model):
     duration = fields.Float (string = "Duration")
     remarks = fields.Char (string ="Remarks")
     
-    owner= fields.Many2one("res.users", ondelete="cascade", string="Owner", required=True, default=lambda self: self.env.user)
+    owner= fields.Many2one("res.users", ondelete="cascade", string="Owner", required=True, readonly=True,default=lambda self: self.env.user)
     
     @api.constrains('duration')
     def _check_duration(self):
         for t in self:
+            if (0< t.duration > 8):
+                raise exceptions.ValidationError("Duration cant be more than 8 hours or less than 0 hours")
+            
+    @api.constrains('duration')
+    def _check_duration_by_day(self):
+        duration_today=0
+        for activity in self.search([('date','=',self.date)]):
+            duration_today=duration_today+activity.duration
             if t.duration > 8:
-                raise exceptions.ValidationError("Duration cant be more than 8 hours")
-    
+                raise exceptions.ValidationError("You cant make more than 8 hours per day")
+                
+    @api.constrains('duration')
+    def _check_total_duraction(self):
+        tot_duration=0
+        for activity in self.search([('owner','=',self.owner.id)]):
+            tot_duration=tot_duration + activity.duration
+            if tot_duration > 350:
+                raise exceptions.ValidationError("You cant make more than 350 hours ")
     
            
             
