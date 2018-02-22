@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-tutor_activity,Model pupil access,model_proyectosge_activity,group_tutor,1,0,0,0
-pupil_activity,Model pupil access,model_proyectosge_activity,group_pupil,1,1,1,1
+access_fctproyect_fctproyect,fctproyect.fctproyect,model_fctproyect_activity,base.group_user,1,1,1,1

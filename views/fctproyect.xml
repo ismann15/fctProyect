@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<odoo>
+    <data>
+        <!--form view-->
+        <record model="ir.ui.view" id="activity_form_view">
+            <field name="name">activity.form</field>
+            <field name="model">fctproyect.activity</field>
+            <field name="arch" type="xml">
+                <form string="Course Form">
+                    <sheet>
+                        <group string ="Activity">
+                            <field name="date"/>
+                            <field name="duration"/>
+                            <field name="description"/>
+                            <field name="remarks"/>
+                            <field name="owner"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.rule" id="activities_rule">
+            <field name="name">User only can update his cativities</field>
+            <field name="model_id" ref="model_fctproyect_activity"/>
+            <field name="domain_force">[('owner','=',user.id)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+        
+        <!--Activities tree view-->
+        <record model="ir.ui.view" id="activities_tree_view">
+            <field name="name">activity.tree</field>
+            <field name="model">fctproyect.activity</field>
+            <field name="arch" type="xml">
+                <tree string="Activity Tree">
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="remarks"/>
+                    <field name="duration"/>
+                    <field name="owner"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="activities_list_action">
+            <field name="name">Activities</field>
+            <field name="res_model">fctproyect.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first activity</p>
+            </field>
+        </record>
+        <!-- pupil tree view -->
+        <record model="ir.ui.view" id="pupils_tree_view">
+            <field name="name">users.tree</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="arch" type="xml">
+                <group>
+                    <field name="activities"/>
+                </group>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="pupils_list_action">
+            <field name="name">Activities</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('isPupil','=','True')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first pupil</p>
+            </field>
+        </record>
+        
+        
+        <!--tutor-->
+        
+        
+        <record model="ir.rule" id="pupils_rule">
+            <field name="name">Tutor view his pupils only</field>
+            <field name="model_id" ref="model_res_users"/>
+            <field name="domain_force">[('tutor','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+        <record model="ir.ui.view" id="tutor_tree_view">
+            <field name="name">activity.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree">
+                    <field name="fctpPupils" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="partners_view">
+            <field name="name">Partners</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('isFCTPartner','=','True')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first partner</p>
+            </field>
+        </record>
+        
+        <!-- top level menu: no parent -->
+        <menuitem id="main_fct_proyect" name="FCT Proyect"/>
+        <!-- FCT_menu -->
+        <menuitem id="fct_menu" name="FCTProyect" parent="main_fct_proyect"/>
+        <!-- Activitie menu-->
+        <menuitem id="activities_menu" name="Activities" parent="fct_menu"
+                  action="activities_list_action"/>
+        <menuitem id="pupils_menu" name="Pupils" parent="fct_menu"
+                  action="pupils_list_action"/>
+        <menuitem id="partner_menu" name ="Partner" parent="fct_menu"
+                  action="partners_view"/>
+    </data>
+</odoo>

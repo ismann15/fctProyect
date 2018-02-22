@@ -4,8 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<fctProyect>
+<odoo>
     <data>
+        
         <record id="group_tutor" model="res.groups">
             <field name="name">fctProyect / Tutor</field>
         </record>
@@ -14,4 +15,4 @@ and open the template in the editor.
             <field name="name">fctProyect / Pupil</field>
         </record>
     </data>
-</fctProyect>
+</odoo>

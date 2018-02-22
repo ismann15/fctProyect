@@ -11,7 +11,7 @@
                     <page string="Practices">
                         <group>
                             <field name="isFCTPartner"/>
-                            <field name="pupils"/>
+                            <field name="fctpPupils"/>
                         </group>
                     </page>
                 </notebook>

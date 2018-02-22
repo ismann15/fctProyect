@@ -6,13 +6,15 @@ from odoo import models, fields, api, exceptions
 class User (models.Model):
     _inherit = 'res.users'
     
-    isPupil = fields.Boolean(string="Pupil", default = False)
-    isTutor = fields.Boolean(string="Tutor", default = False)
+    isPupil = fields.Boolean("isPupil", default = False)
+    isTutor = fields.Boolean("isTutor", default = False)
+    
+    activities = fields.One2many('fctproyect.activity', 'owner', string="Activities")
     
     tutor = fields.Many2one('res.users',string="Tutor")
     pupils = fields.One2many('res.users','tutor',string = "Pupils")
     
-    activities = fields.One2many('fctproyect.activity', 'owner', string="Activities")
+    
     
     partner = fields.Many2one('res.partner', ondelete='cascade', string="FCTPartner")
     

@@ -8,6 +8,6 @@ class Partner(models.Model):
     
     isFCTPartner = fields.Boolean(string="FCTPartner", default=False)
     
-    fctpPupils= fields.One2many('res.users',string="Pupils")
+    fctpPupils= fields.One2many('res.users','partner',string="Pupils")
     
  
